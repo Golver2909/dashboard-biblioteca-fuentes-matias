@@ -3,6 +3,8 @@ import { computed, onMounted, ref } from 'vue'
 import { useBibliotecaStore } from '@/stores/biblioteca'
 import type { Libro } from '@/interfaces/libros'
 import Swal from 'sweetalert2'
+import CardLibro from "@/components/CardLibro.vue";
+
 
 const store = useBibliotecaStore()
 
@@ -17,23 +19,7 @@ const librosAlfabeticamente = computed(() => store.sortAlphabetically)
 const autorAlfabeticamente = computed(() => store.sortAlphabeticallyAuthor)
 const ordenPaginas = computed(() => store.sortByAPages)
 
-//Funcion que recibe un id y cambia la disponibilidad del libro que correscponda
-const switchDisponible = (id:number):void => {
-    const libroEncontrado = libros.value.find((b) => b.id === id)
-    if (libroEncontrado) {
-        libroEncontrado.disponible = !libroEncontrado.disponible
-        Swal.fire({
-            title: "Libro prestado",
-            text: `El libro '${libroEncontrado.titulo}' fue prestado`,
-            icon: "info",
-            confirmButtonColor: "#065f46",
-            background:"#292524",
-            color:"#ecfeff"
-        })
-    }else{
-        alert("ID no encontrado")
-    }
-}
+
 
 //Funcion para ordenar los libros segun el parametro
 const orderBooks = (order:string):void => {
@@ -77,19 +63,8 @@ onMounted(() => {
         No existen libros dentro de esta biblioteca
     </div>
     <div v-else class="space-y-4 flex flex-wrap">
-        <div v-for="libro in allBooks" :key="libro.id" class="sm:w-full md:w-1/3 flex flex-col p-3">
-            <div :class="libro.disponible?'bg-zinc-300 rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col':'bg-red-400 rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col'">
-                <div class="p-4 flex-1 flex flex-col text-center">
-                    <h2 class="mb-4 text-zinc-900 text-2xl"> {{ libro.titulo }}</h2>
-                    <div class="mb-4 text-zinc-900 text-sm flex-1">
-                        <h4>Escrito por <strong>{{ libro.autor }}</strong></h4>
-                        <p>Total paginas: <strong>{{ libro.paginas }}</strong></p>
-                        <p :class="libro.disponible ? 'text-emerald-900' : 'text-zinc-950'"><strong>{{ libro.disponible ? "Actualmente disponible" : "No se encuentra disponible"}}</strong></p>
-                    </div>
-                    <button class="rounded-sm hover:bg-blue-800 text-zinc-950 bg-blue-600" @click="switchDisponible(libro.id)">{{ libro.disponible ? "Prestar libro" : "Devolver libro" }}</button>
-                </div>
-            </div>  
-        </div>
+        <CardLibro v-for="libro in allBooks" :key="libro.id" :libro="libro"/>
+        
         <!-- Div con botones para aplicar los filtros -->
         <div class="flex justify-center items-center w-full">
             <button class="m-2 p-2 rounded-sm text-zinc-950 bg-cyan-900" @click="orderBooks('alphabetTitle')">Ordenar Alfabeticamente</button>
