@@ -21,8 +21,14 @@ const libroSubmit = ():void =>{
     //Valido por falsy
     if(!storeBiblioteca.error){
         
-        visualMesagge.value = `Libro '${formModel.value.titulo}' agregado correctamente`
-        setTimeout(() => (visualMesagge.value = ''), 3000)
+        Swal.fire({
+            title: "Libro Agregado",
+            text: `El libro '${formModel.value.titulo}' fue agregado`,
+            icon: "success",
+            confirmButtonColor: "#065f46",
+            background:"#292524",
+            color:"#ecfeff"
+        })
     }else{
         setTimeout(() => (storeBiblioteca.error = ''),3000)
     }

@@ -2,6 +2,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { useBibliotecaStore } from '@/stores/biblioteca'
 import type { Libro } from '@/interfaces/libros'
+import Swal from 'sweetalert2'
 
 const store = useBibliotecaStore()
 
@@ -21,6 +22,14 @@ const switchDisponible = (id:number):void => {
     const libroEncontrado = libros.value.find((b) => b.id === id)
     if (libroEncontrado) {
         libroEncontrado.disponible = !libroEncontrado.disponible
+        Swal.fire({
+            title: "Libro prestado",
+            text: `El libro '${libroEncontrado.titulo}' fue prestado`,
+            icon: "info",
+            confirmButtonColor: "#065f46",
+            background:"#292524",
+            color:"#ecfeff"
+        })
     }else{
         alert("ID no encontrado")
     }
@@ -71,7 +80,7 @@ onMounted(() => {
         <div v-for="libro in allBooks" :key="libro.id" class="sm:w-full md:w-1/3 flex flex-col p-3">
             <div :class="libro.disponible?'bg-zinc-300 rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col':'bg-red-400 rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col'">
                 <div class="p-4 flex-1 flex flex-col text-center">
-                    <h2 class="mb-4 text-zinc-900 text-2xl"> {{libro.id}} - {{ libro.titulo }}</h2>
+                    <h2 class="mb-4 text-zinc-900 text-2xl"> {{ libro.titulo }}</h2>
                     <div class="mb-4 text-zinc-900 text-sm flex-1">
                         <h4>Escrito por <strong>{{ libro.autor }}</strong></h4>
                         <p>Total paginas: <strong>{{ libro.paginas }}</strong></p>
@@ -86,7 +95,7 @@ onMounted(() => {
             <button class="m-2 p-2 rounded-sm text-zinc-950 bg-cyan-900" @click="orderBooks('alphabetTitle')">Ordenar Alfabeticamente</button>
             <button class="m-2 p-2 rounded-sm text-zinc-950 bg-cyan-900" @click="orderBooks('alphabetAuthor')">Ordenar por autor(alfabeticamente)</button>
             <button class="m-2 p-2 rounded-sm text-zinc-950 bg-cyan-900" @click="orderBooks('pages')">Ordenar por numero de paginas</button>
-            <button class="m-2 p-2 rounded-sm text-zinc-950 bg-cyan-900" @click="orderBooks('original')">Ordenar por numero de paginas</button>
+            <button class="m-2 p-2 rounded-sm text-zinc-950 bg-cyan-900" @click="orderBooks('original')">Orden original</button>
         </div>
     </div>
     
