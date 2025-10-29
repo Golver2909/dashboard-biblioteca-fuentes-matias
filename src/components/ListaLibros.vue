@@ -40,6 +40,9 @@ const orderBooks = (order:string):void => {
         allBooks.value = ordenPaginas.value
         return
     }
+    if(order === "original"){
+        allBooks.value = libros.value
+    }
 }
 
 //Al renderizar la vista, se ejecuta inmediatamente una funcion para obtener los datos iniciales(manejamos tambien 'isLoading')
@@ -78,10 +81,12 @@ onMounted(() => {
                 </div>
             </div>  
         </div>
+        <!-- Div con botones para aplicar los filtros -->
         <div class="flex justify-center items-center w-full">
             <button class="m-2 p-2 rounded-sm text-zinc-950 bg-cyan-900" @click="orderBooks('alphabetTitle')">Ordenar Alfabeticamente</button>
             <button class="m-2 p-2 rounded-sm text-zinc-950 bg-cyan-900" @click="orderBooks('alphabetAuthor')">Ordenar por autor(alfabeticamente)</button>
             <button class="m-2 p-2 rounded-sm text-zinc-950 bg-cyan-900" @click="orderBooks('pages')">Ordenar por numero de paginas</button>
+            <button class="m-2 p-2 rounded-sm text-zinc-950 bg-cyan-900" @click="orderBooks('original')">Ordenar por numero de paginas</button>
         </div>
     </div>
     

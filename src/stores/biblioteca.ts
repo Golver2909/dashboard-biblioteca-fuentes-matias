@@ -21,7 +21,7 @@ export const useBibliotecaStore = defineStore('biblioteca',{
             this.isLoading = true
             try {
                 await new Promise((r) => setTimeout(r, 300))
-                this.data = []
+                this.data = this.data
                 this.error = null
             } catch (err) {
                 this.error = 'Error al cargar los datos iniciales'
