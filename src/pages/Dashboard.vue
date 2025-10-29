@@ -12,8 +12,8 @@ interface Section {
 }
 
 const sections: Ref<Section[]> = ref<Section[]>([
-    { name: 'Formulario', route: '/form', isActive: false },
-    { name: 'Lista', route: '/list', isActive: false }
+    { name: 'Formulario', route: '/libros/nuevo', isActive: false },
+    { name: 'Lista', route: '/libros', isActive: false }
 ]);
 
 //Cambia estado de 'isActive para manejar estados'
@@ -33,7 +33,7 @@ const changeActive = (name:string):void =>{
 
 <template>
     <div class="min-h-screen flex bg-zinc-900 text-zinc-200 font-sans">
-        <aside class="w-64 border-r border-zinc-700/60 bg-zinc-950 p-4">
+        <aside class="w-1/3 sm:w-1/4 md:w-1/6 border-r border-zinc-700/60 bg-zinc-950 p-4">
             <nav class="flex-1 px-3 py-4 space-y-1">
                 <!-- Por cada section declarado dentro de 'sections', se crea una ruta que puede estar o no estar activa  -->
                 <RouterLink v-for="(section, index) in sections" :key="index" :to="section.route" class="flex items-center px-4 py-2.5 rounded-lg border border-transparent text-sm font-medium transition-colors duration-200

@@ -9,8 +9,8 @@ const router = createRouter({
     {
       path: '/', component: Dashboard, 
       children: [
-        { path: 'form', component: FormLibro },
-        { path: 'list',component: ListaLibros }
+        { path: 'libros/nuevo', component: FormLibro },
+        { path: 'libros',component: ListaLibros }
       ]
       /* children: [
         { path: 'racers', component: Racers },
