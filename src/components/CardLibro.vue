@@ -11,7 +11,9 @@ const switchDisponible = (id:number):void => {
     props.libro.disponible = !props.libro.disponible
     
         Swal.fire({
-            title: "Libro prestado",
+            title: props.libro.disponible ? 
+                "Libro devuelto" :
+                "Libro prestado",
             text: props.libro.disponible ? 
                 `El libro '${props.libro.titulo}' fue devuelto a la biblioteca` :
                 `El libro '${props.libro.titulo}' fue prestado`
