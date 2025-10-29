@@ -16,6 +16,13 @@ const formModel = ref<Libro>({
 
 const visualMesagge = ref<string>()
 
+const resetForm = () =>{
+    formModel.value.id = 0
+    formModel.value.titulo = ''
+    formModel.value.autor = ''
+    formModel.value.paginas = 0
+}
+
 const libroSubmit = ():void =>{
     storeBiblioteca.addBook({...formModel.value})
     //Valido por falsy
@@ -35,6 +42,8 @@ const libroSubmit = ():void =>{
             background:"#292524",
             color:"#ecfeff"
         })
+
+        resetForm()
     }else{
         //Error se blanqueara luego de un tiempo, ocultando el mensaje de error
         setTimeout(() => (storeBiblioteca.error = ''),4000)

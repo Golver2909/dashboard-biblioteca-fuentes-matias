@@ -67,10 +67,10 @@ onMounted(() => {
         
         <!-- Div con botones para aplicar los filtros -->
         <div class="flex justify-center items-center w-full">
-            <button class="m-2 p-2 rounded-sm text-zinc-950 bg-cyan-900" @click="orderBooks('alphabetTitle')">Ordenar Alfabeticamente</button>
-            <button class="m-2 p-2 rounded-sm text-zinc-950 bg-cyan-900" @click="orderBooks('alphabetAuthor')">Ordenar por autor(alfabeticamente)</button>
-            <button class="m-2 p-2 rounded-sm text-zinc-950 bg-cyan-900" @click="orderBooks('pages')">Ordenar por numero de paginas</button>
-            <button class="m-2 p-2 rounded-sm text-zinc-950 bg-cyan-900" @click="orderBooks('original')">Orden original</button>
+            <button class="m-2 p-2 rounded-sm hover:bg-cyan-950 text-zinc-950 bg-cyan-800" @click="orderBooks('alphabetTitle')">Ordenar Alfabeticamente</button>
+            <button class="m-2 p-2 rounded-sm hover:bg-cyan-950 text-zinc-950 bg-cyan-800" @click="orderBooks('alphabetAuthor')">Ordenar por autor(alfabeticamente)</button>
+            <button class="m-2 p-2 rounded-sm hover:bg-cyan-950 text-zinc-950 bg-cyan-800" @click="orderBooks('pages')">Ordenar por numero de paginas</button>
+            <button class="m-2 p-2 rounded-sm hover:bg-cyan-950 text-zinc-950 bg-cyan-800" @click="orderBooks('original')">Orden original</button>
         </div>
     </div>
     
