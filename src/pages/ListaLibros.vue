@@ -2,7 +2,6 @@
 import { computed, onMounted, ref } from 'vue'
 import { useBibliotecaStore } from '@/stores/biblioteca'
 import type { Libro } from '@/interfaces/libros'
-import Swal from 'sweetalert2'
 import CardLibro from "@/components/CardLibro.vue";
 
 
@@ -60,17 +59,17 @@ onMounted(() => {
     </div>
 
     <div v-else-if="libros.length === 0" class="text-center py-6 text-zinc-500 italic">
-        No existen libros dentro de esta biblioteca
+        No existen libros dentro de esta biblioteca.
     </div>
     <div v-else class="space-y-4 flex flex-wrap">
         <CardLibro v-for="libro in allBooks" :key="libro.id" :libro="libro"/>
         
         <!-- Div con botones para aplicar los filtros -->
-        <div class="flex justify-center items-center w-full">
-            <button class="m-2 p-2 rounded-sm hover:bg-cyan-950 text-zinc-950 bg-cyan-800" @click="orderBooks('alphabetTitle')">Ordenar Alfabeticamente</button>
-            <button class="m-2 p-2 rounded-sm hover:bg-cyan-950 text-zinc-950 bg-cyan-800" @click="orderBooks('alphabetAuthor')">Ordenar por autor(alfabeticamente)</button>
-            <button class="m-2 p-2 rounded-sm hover:bg-cyan-950 text-zinc-950 bg-cyan-800" @click="orderBooks('pages')">Ordenar por numero de paginas</button>
-            <button class="m-2 p-2 rounded-sm hover:bg-cyan-950 text-zinc-950 bg-cyan-800" @click="orderBooks('original')">Orden original</button>
+        <div class="flex flex-col sm:flex-row flex-wrap justify-center items-center w-full gap-2 p-2">
+            <button class="w-full sm:w-auto px-4 py-2 m-2 p-2 rounded-sm hover:bg-cyan-950 text-zinc-950 bg-cyan-800" @click="orderBooks('alphabetTitle')">Ordenar Alfabeticamente</button>
+            <button class="w-full sm:w-auto px-4 py-2 m-2 p-2 rounded-sm hover:bg-cyan-950 text-zinc-950 bg-cyan-800" @click="orderBooks('alphabetAuthor')">Ordenar por autor(alfabeticamente)</button>
+            <button class="w-full sm:w-auto px-4 py-2 m-2 p-2 rounded-sm hover:bg-cyan-950 text-zinc-950 bg-cyan-800" @click="orderBooks('pages')">Ordenar por numero de paginas</button>
+            <button class="w-full sm:w-auto px-4 py-2 m-2 p-2 rounded-sm hover:bg-cyan-950 text-zinc-950 bg-cyan-800" @click="orderBooks('original')">Orden original</button>
         </div>
     </div>
     
