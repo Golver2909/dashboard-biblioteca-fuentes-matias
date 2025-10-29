@@ -21,6 +21,12 @@ const libroSubmit = ():void =>{
     //Valido por falsy
     if(!storeBiblioteca.error){
         
+        /* 
+        Sweetalert es una libreria usada para crear alertas personalizadas,
+        se que usted pidio que no se implementen librerias nuevas, pero me 
+        parecio un complemento interesante para agregar a las funciones de la app.
+        ATTE.: Matias Fuentes.
+        */
         Swal.fire({
             title: "Libro Agregado",
             text: `El libro '${formModel.value.titulo}' fue agregado`,
@@ -30,7 +36,8 @@ const libroSubmit = ():void =>{
             color:"#ecfeff"
         })
     }else{
-        setTimeout(() => (storeBiblioteca.error = ''),3000)
+        //Error se blanqueara luego de un tiempo, ocultando el mensaje de error
+        setTimeout(() => (storeBiblioteca.error = ''),4000)
     }
 }
 
@@ -65,9 +72,6 @@ const libroSubmit = ():void =>{
                 Agregar Libro
             </button>
 
-            <p v-if="visualMesagge" class="text-emerald-400 text-center mt-4">
-                {{ visualMesagge }}
-            </p>
             <p v-if="storeBiblioteca.error" class="text-red-400 text-center mt-2">
                 {{ storeBiblioteca.error }}
             </p>

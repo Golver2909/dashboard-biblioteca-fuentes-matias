@@ -9,25 +9,19 @@ const props=defineProps<{libro:Libro}>()
 const switchDisponible = (id:number):void => {
 
     props.libro.disponible = !props.libro.disponible
-    if(props.libro.disponible){
+    
         Swal.fire({
             title: "Libro prestado",
-            text: `El libro '${props.libro.titulo}' fue devuelto a la biblioteca`,
+            text: props.libro.disponible ? 
+                `El libro '${props.libro.titulo}' fue devuelto a la biblioteca` :
+                `El libro '${props.libro.titulo}' fue prestado`
+            ,
             icon: "info",
             confirmButtonColor: "#065f46",
             background:"#292524",
             color:"#ecfeff"
         })
-    }else{
-        Swal.fire({
-            title: "Libro prestado",
-            text: `El libro '${props.libro.titulo}' fue prestado`,
-            icon: "info",
-            confirmButtonColor: "#065f46",
-            background:"#292524",
-            color:"#ecfeff"
-        })
-    }
+    
     
     
 }
